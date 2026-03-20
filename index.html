@@ -14,98 +14,81 @@
             background: radial-gradient(circle at center, #1a001f 0%, #000000 100%);
             font-family: 'Poppins', sans-serif;
             overflow: hidden; height: 100vh; width: 100vw;
-            color: #ffffff; user-select: none;
+            color: #ffffff; user-select: none; touch-action: manipulation;
         }
 
-        /* Fixed Background for Stars - Performance Optimized */
-        #stars-container {
-            position: fixed; inset: 0; z-index: 0; pointer-events: none;
-            background: transparent;
-        }
-
-        .header-tag {
-            position: fixed; top: 15px; width: 100%; text-align: center;
-            z-index: 100; font-family: 'Dancing Script', cursive;
-            color: #ffb3d9; font-size: 1.5rem; letter-spacing: 1px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,1), 0 0 10px rgba(255,179,217,0.6);
-        }
-
-        /* Ultra-Smooth Transitions */
-        .slide {
-            display: none; position: fixed; inset: 0; width: 100%; height: 100%;
-            align-items: center; justify-content: center; flex-direction: column;
-            transition: opacity 0.6s ease-in-out, transform 0.6s ease-out;
-            opacity: 0; z-index: 20; padding: 25px; text-align: center;
-        }
-        .slide.active { display: flex; opacity: 1; }
-
-        /* Crystal Clear Bold Text */
-        .cute-msg { 
-            font-family: 'Dancing Script', cursive; 
-            color: #ffffff; 
-            text-shadow: 0 0 15px #ff00cc, 0 0 30px #ff00cc, 3px 3px 6px rgba(0,0,0,1); 
-            font-size: clamp(2.2rem, 8vw, 3.2rem); 
-            margin-top: 15px; font-weight: 700; line-height: 1.2;
-        }
-        .sub-text { 
-            color: #ffffff; font-weight: 600; font-size: 1.15rem; 
-            text-shadow: 2px 2px 8px rgba(0,0,0,1);
-            margin-top: 10px; max-width: 320px;
-        }
-        
-        .gif-frame { 
-            width: 260px; height: 260px; border-radius: 30px; 
-            border: 4px solid #ff00cc; 
-            box-shadow: 0 0 40px rgba(255, 0, 204, 0.6); 
-            object-fit: cover; background: #000;
-        }
-
-        .glow-btn { 
-            background: linear-gradient(45deg, #ff00cc, #ff69b4); 
-            padding: 15px 40px; border-radius: 50px; font-weight: 700; 
-            box-shadow: 0 0 25px rgba(255, 0, 204, 0.5); 
-            cursor: pointer; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            margin: 12px; color: white; border: none; font-size: 1.1rem;
-            z-index: 30;
-        }
-        .glow-btn:hover { transform: scale(1.1); box-shadow: 0 0 40px #ff00cc; }
-        .glow-btn:active { transform: scale(0.9); }
-        
-        .no-btn { background: #333; color: #bbb; padding: 12px 30px; border-radius: 50px; cursor: pointer; border: 1px solid #555; }
-
-        /* Real Twinkling Stars Logic */
+        /* Fixed Background Stars - Performance Optimized */
+        #stars-container { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
         .star { 
             position: absolute; background: white; border-radius: 50%; 
             animation: realTwinkle var(--dur) infinite ease-in-out;
             will-change: opacity, transform;
         }
         @keyframes realTwinkle {
-            0%, 100% { opacity: 0.2; transform: scale(0.7); filter: blur(0px); }
-            50% { opacity: 1; transform: scale(1.3); filter: blur(0.5px) drop-shadow(0 0 4px #fff); }
+            0%, 100% { opacity: 0.2; transform: scale(0.7); }
+            50% { opacity: 1; transform: scale(1.2); }
         }
 
-        /* Solar System (Checking all planets) */
+        .header-tag {
+            position: fixed; top: 15px; width: 100%; text-align: center;
+            z-index: 100; font-family: 'Dancing Script', cursive;
+            color: #ffb3d9; font-size: 1.5rem;
+            text-shadow: 0 0 10px rgba(255,179,217,0.6);
+        }
+
+        /* Ultra-Smooth Transitions */
+        .slide {
+            display: none; position: fixed; inset: 0; width: 100%; height: 100%;
+            align-items: center; justify-content: center; flex-direction: column;
+            opacity: 0; z-index: 20; padding: 25px; text-align: center;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            transform: scale(0.98);
+        }
+        .slide.active { display: flex; opacity: 1; transform: scale(1); }
+
+        .cute-msg { 
+            font-family: 'Dancing Script', cursive; color: #ffffff; 
+            text-shadow: 0 0 15px #ff00cc, 3px 3px 6px rgba(0,0,0,1); 
+            font-size: clamp(2.2rem, 8vw, 3.2rem); 
+            margin-top: 15px; font-weight: 700; line-height: 1.2;
+        }
+        .sub-text { color: #ffffff; font-weight: 600; font-size: 1.15rem; margin-top: 10px; max-width: 320px; text-shadow: 1px 1px 5px #000; }
+        
+        .gif-frame { 
+            width: 250px; height: 250px; border-radius: 30px; 
+            border: 4px solid #ff00cc; box-shadow: 0 0 30px rgba(255, 0, 204, 0.5); 
+            object-fit: cover; background: #000;
+        }
+
+        .glow-btn { 
+            background: linear-gradient(45deg, #ff00cc, #ff69b4); 
+            padding: 14px 35px; border-radius: 50px; font-weight: 700; 
+            box-shadow: 0 0 20px rgba(255, 0, 204, 0.4); 
+            cursor: pointer; border: none; color: white; font-size: 1.1rem;
+            margin-top: 20px; transition: 0.2s;
+        }
+        .glow-btn:active { transform: scale(0.9); }
+
+        /* Solar System Animation (Re-Added) */
         .solar-system { position: relative; width: 280px; height: 280px; display: flex; align-items: center; justify-content: center; }
-        .orbit { position: absolute; border: 2px solid rgba(255,105,180,0.35); border-radius: 50%; animation: spin linear infinite; }
+        .orbit { position: absolute; border: 2px solid rgba(255,105,180,0.3); border-radius: 50%; animation: spin linear infinite; }
         .orbit-1 { width: 180px; height: 180px; animation-duration: 6s; }
         .orbit-2 { width: 260px; height: 260px; animation-duration: 10s; animation-direction: reverse; }
         .planet { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); font-size: 26px; }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        /* Hold Progress Logic */
-        .hold-container { width: 280px; height: 18px; background: rgba(255,255,255,0.15); border-radius: 10px; margin-top: 25px; overflow: hidden; position: relative; border: 2px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.5); }
-        #holdProgress { position: absolute; left: 0; top: 0; height: 100%; background: linear-gradient(90deg, #ff00cc, #ff69b4); width: 0%; box-shadow: 0 0 20px #ff00cc; transition: width 0.1s linear; }
+        /* Progress Bar */
+        .hold-container { width: 280px; height: 18px; background: rgba(255,255,255,0.1); border-radius: 10px; margin-top: 25px; overflow: hidden; border: 2px solid white; }
+        #holdProgress { height: 100%; background: linear-gradient(90deg, #ff00cc, #ff69b4); width: 0%; transition: width 0.1s linear; }
 
-        /* Video Layer */
         #videoLayer { display: none; position: fixed; inset: 0; background: black; z-index: 1000; align-items: center; justify-content: center; }
         video { width: 100%; height: 100%; object-fit: contain; }
     </style>
 </head>
 <body>
 
-    <div class="header-tag">Follow on insta - @smss1708💗</div>
-
-    <audio id="bgMusic" loop src="tere-liye.mp3"></audio>
+    <div class="header-tag">follow on insta - @smss1708 💗</div>
+    <audio id="bgMusic" loop src="tere-liye.mp3" preload="auto"></audio>
     <div id="stars-container"></div>
 
     <div id="slide1" class="slide active">
@@ -130,10 +113,10 @@
     </div>
 
     <div id="slide4" class="slide">
-        <div class="text-9xl mb-6 transition-all duration-500" id="pulseHeart">💖</div>
-        <h1 class="text-2xl font-bold drop-shadow-lg">How much do I adore you?</h1>
+        <div class="text-8xl mb-6 transition-transform duration-300" id="pulseHeart">💖</div>
+        <h1 class="text-2xl font-bold">How much do I adore you?</h1>
         <div class="hold-container"><div id="holdProgress"></div></div>
-        <button id="holdBtn" class="glow-btn mt-6 select-none">PRESS & HOLD TO FEEL</button>
+        <button id="holdBtn" class="glow-btn select-none">PRESS & HOLD TO FEEL</button>
     </div>
 
     <div id="slide5" class="slide">
@@ -147,7 +130,7 @@
         <div class="solar-system">
             <div class="orbit orbit-1"><span class="planet">💗</span></div>
             <div class="orbit orbit-2"><span class="planet">⭐</span></div>
-            <div class="text-6xl drop-shadow-2xl">🌍</div>
+            <div class="text-6xl">🌍</div>
         </div>
         <h1 class="cute-msg mt-10">My Whole Universe!</h1>
         <p class="sub-text">Everything seems better when you're around.</p>
@@ -163,17 +146,16 @@
 
     <div id="slide8" class="slide">
         <h1 class="cute-msg">You're my Brightest Star! ⭐</h1>
-        <p class="sub-text max-w-xs">In a sky full of stars, my eyes only search for you.</p>
+        <p class="sub-text">In a sky full of stars, my eyes only search for you.</p>
         <button onclick="next()" class="glow-btn">Just a bit more ✨</button>
     </div>
 
     <div id="slide9" class="slide">
         <img src="gif6.gif" class="gif-frame">
-        <h1 class="cute-msg">Will You Be My (Besty) BestestFriend? ❤️</h1>
-        <p class="sub-text">...and maybe something even more special? 💍</p>
-        <div id="btnContainer" class="flex flex-wrap justify-center mt-4">
+        <h1 class="cute-msg">Will You Be My (Besty) Bestest Friend? ❤️</h1>
+        <div id="btnContainer" class="flex flex-wrap justify-center gap-3 mt-4">
             <button onclick="next()" class="glow-btn">YES! 😍</button>
-            <button id="noBtn" onclick="trapNo()" class="no-btn">No 🥺</button>
+            <button id="noBtn" onclick="trapNo()" class="px-8 py-3 bg-gray-800 rounded-full text-gray-400 mt-5">No 🥺</button>
         </div>
     </div>
 
@@ -192,55 +174,49 @@
         let step = 1;
         const music = document.getElementById('bgMusic');
 
-        // Check: Star generation (Better randomization)
+        // Fast Star Generation
         const starContainer = document.getElementById('stars-container');
-        for(let i=0; i<150; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
+        const frag = document.createDocumentFragment();
+        for(let i=0; i<100; i++) {
+            const s = document.createElement('div');
+            s.className = 'star';
             const size = Math.random() * 2 + 1 + 'px';
-            star.style.width = size; star.style.height = size;
-            star.style.left = Math.random() * 100 + 'vw';
-            star.style.top = Math.random() * 100 + 'vh';
-            star.style.setProperty('--dur', (Math.random() * 2 + 1) + 's');
-            star.style.animationDelay = Math.random() * 3 + 's';
-            starContainer.appendChild(star);
+            s.style.width = size; s.style.height = size;
+            s.style.left = Math.random() * 100 + 'vw';
+            s.style.top = Math.random() * 100 + 'vh';
+            s.style.setProperty('--dur', (Math.random() * 2 + 1) + 's');
+            frag.appendChild(s);
         }
+        starContainer.appendChild(frag);
 
-        function startApp() { 
-            music.play().catch(() => { console.log("Music waiting for interaction"); }); 
-            next(); 
-        }
+        function startApp() { music.play().catch(e => console.log(e)); next(); }
 
         function next() {
             const current = document.getElementById('slide' + step);
+            const nextS = document.getElementById('slide' + (step + 1));
             if(current) {
                 current.classList.remove('active');
-                setTimeout(() => { current.style.display = 'none'; }, 600);
+                setTimeout(() => { current.style.display = 'none'; }, 400);
             }
-            
-            step++;
-            const nextS = document.getElementById('slide' + step);
-            if(nextS) { 
-                nextS.style.display = 'flex'; 
-                setTimeout(() => nextS.classList.add('active'), 50); 
+            if(nextS) {
+                step++;
+                nextS.style.display = 'flex';
+                void nextS.offsetWidth; // Force Reflow for instant animation
+                nextS.classList.add('active');
             }
         }
 
-        // Check: No Button Trap (Adds multiple Yes buttons)
         function trapNo() {
             const container = document.getElementById('btnContainer');
-            const noBtn = document.getElementById('noBtn');
-            noBtn.style.display = 'none';
-            for(let i=0; i<6; i++) {
-                const newYes = document.createElement('button');
-                newYes.innerHTML = "YES! 💖";
-                newYes.className = "glow-btn";
-                newYes.onclick = next;
-                container.appendChild(newYes);
+            document.getElementById('noBtn').style.display = 'none';
+            for(let i=0; i<5; i++) {
+                const b = document.createElement('button');
+                b.className = "glow-btn"; b.innerHTML = "YES! 💖";
+                b.onclick = next; container.appendChild(b);
             }
         }
 
-        // Check: Hold Logic (Improved with touch support)
+        // Hold Logic
         let hVal = 0, hInt;
         const hBtn = document.getElementById('holdBtn'), 
               hProg = document.getElementById('holdProgress'), 
@@ -248,33 +224,27 @@
         
         const startH = (e) => { 
             e.preventDefault(); 
-            pHeart.style.transform = 'scale(1.6)';
+            pHeart.style.transform = 'scale(1.5)';
             hInt = setInterval(() => { 
-                hVal += 2; 
+                hVal += 2.5; 
                 hProg.style.width = hVal + '%'; 
                 if(hVal >= 100) { clearInterval(hInt); next(); } 
-            }, 40); 
+            }, 30); 
         };
-        const endH = () => { 
-            clearInterval(hInt); 
-            hVal = 0; 
-            hProg.style.width = '0%'; 
-            pHeart.style.transform = 'scale(1)'; 
-        };
+        const endH = () => { clearInterval(hInt); hVal = 0; hProg.style.width = '0%'; pHeart.style.transform = 'scale(1)'; };
         
-        hBtn.addEventListener('mousedown', startH);
         hBtn.addEventListener('touchstart', startH);
-        window.addEventListener('mouseup', endH);
+        hBtn.addEventListener('mousedown', startH);
         window.addEventListener('touchend', endH);
+        window.addEventListener('mouseup', endH);
 
-        // Check: Video Player
-        function playSurprise() { 
-            music.pause(); 
+        function playSurprise() {
+            music.pause();
             const layer = document.getElementById('videoLayer');
-            const video = document.getElementById('vPlayer');
             layer.style.display = 'flex';
-            video.play();
-            video.onended = () => { location.reload(); };
+            const v = document.getElementById('vPlayer');
+            v.play();
+            v.onended = () => location.reload();
         }
     </script>
 </body>
